@@ -426,10 +426,6 @@ public class Time {
         return (int)(timeInSeconds * fps);
     }
     
-    public static int getFrame(long pts, double fps){
-        return getFrame(Time.create(pts / 1000L), fps);
-    }
-    
     public static Time getTimeFromFrame(int frame, double fps){
         double msec = frame / fps * 1000;
         return Time.create(Math.round(msec));
