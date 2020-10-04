@@ -421,6 +421,32 @@ public class Time {
         return Shour + "h " + Smin + "m " + Ssec + "s";
     }
     
+    /**
+     * Get Time in FFMpeg format.
+     * @return A formatted time as "00:00:00.000"
+     */
+    public String toFFMpegTime(){
+        String Shour, Smin, Ssec, Smilli;
+
+        int hour = getHours();
+        int min = getMinutes();
+        int sec = getSeconds();
+        int mSec = getMilliseconds();
+
+        if (hour<10){Shour = "0"+hour;}else{Shour = String.valueOf(hour);}
+        if (min<10){Smin = "0"+min;}else{Smin = String.valueOf(min);}
+        if (sec<10){Ssec = "0"+sec;}else{Ssec = String.valueOf(sec);}
+        if (mSec<10){
+            Smilli = "00"+mSec;
+        }else if (mSec<100){
+            Smilli = "0"+mSec;
+        }else{
+            Smilli = String.valueOf(mSec);
+        }
+
+        return Shour + ":" + Smin + ":" + Ssec + "." + Smilli;
+    }
+    
     public static int getFrame(Time t, double fps){
         double timeInSeconds = Time.toMillisecondsTime(t) / 1000d;
         return (int)(timeInSeconds * fps);
