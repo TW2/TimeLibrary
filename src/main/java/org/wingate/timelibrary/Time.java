@@ -457,6 +457,22 @@ public class Time {
         return Time.create(Math.round(msec));
     }
     
+    public static Time getTimeFromSamples(double samplerate, double samplesPerPixel, long pixels){
+        // The formula is simple:
+        // Milliseconds times the sample rate = # of samples    
+        // example:
+        // 17 times 44.1 = 749.7 samples
+        
+        // Get the number of samples
+        // nbSamples = pixels * samplesPerPixel
+        double nbSamples = pixels * samplesPerPixel;
+        // Get time
+        // ms = nbSamples / samplerate in kHz
+        double msec = nbSamples / samplerate;
+        // Return time
+        return Time.create(Math.round(msec));
+    }
+    
     public static long getLengthInMilliseconds(Time t){
         return Time.toMillisecondsTime(t);
     }
