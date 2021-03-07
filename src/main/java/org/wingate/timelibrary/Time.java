@@ -447,6 +447,26 @@ public class Time {
         return Shour + ":" + Smin + ":" + Ssec + "." + Smilli;
     }
     
+    /**
+     * Get Time in ASS format.
+     * @return A formatted time as "0:00:00.00"
+     */
+    public String toSRTTime(){
+        String Smin, Ssec, ms;
+
+        int hour = getHours();
+        int min = getMinutes();
+        int sec = getSeconds();
+        int mSec = getMilliseconds();
+
+        if (min<10){Smin = "0"+min;}else{Smin = String.valueOf(min);}
+        if (sec<10){Ssec = "0"+sec;}else{Ssec = String.valueOf(sec);}
+        if (mSec<10){ms = "0"+mSec;}else{ms = String.valueOf(mSec);}
+        if (mSec<100 && mSec>10){ms = "0"+ms;}else{ms = String.valueOf(mSec);}
+
+        return hour + ":" + Smin + ":" + Ssec + "," + ms;
+    }
+    
     public static int getFrame(Time t, double fps){
         double timeInSeconds = Time.toMillisecondsTime(t) / 1000d;
         return (int)(timeInSeconds * fps);
