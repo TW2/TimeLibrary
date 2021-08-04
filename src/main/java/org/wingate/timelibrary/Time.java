@@ -389,18 +389,24 @@ public class Time {
      * @return A formatted time as "0h00m00s000c"
      */
     public String toDisplayTime(){
-        String Smin, Ssec, Scent;
+        String Smin, Ssec, Smilli;
 
         int hour = getHours();
         int min = getMinutes();
         int sec = getSeconds();
-        int cSec = getMilliseconds()/10;
+        int mSec = getMilliseconds();
 
         if (min<10){Smin = "0"+min;}else{Smin = String.valueOf(min);}
         if (sec<10){Ssec = "0"+sec;}else{Ssec = String.valueOf(sec);}
-        if (cSec<10){Scent = "00"+cSec;}else if(cSec<100){Scent = "0"+cSec;}else{Scent = String.valueOf(cSec);}
+        if (mSec<10){
+            Smilli = "00"+mSec;
+        }else if (mSec<100){
+            Smilli = "0"+mSec;
+        }else{
+            Smilli = String.valueOf(mSec);
+        }
 
-        return hour + "h " + Smin + "m " + Ssec + "s " + Scent + "c";
+        return hour + "h " + Smin + "m " + Ssec + "s " + Smilli + "ms";
     }
     
     /**
