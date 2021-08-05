@@ -508,4 +508,10 @@ public class Time {
         double s = ms/1000d;
         return s;
     }
+    
+    public static double getWordsPerMinutes(Time t, int words){
+        long ms = Time.toMillisecondsTime(t);
+        double min = ms/1000000d;
+        return min <= 0 ? words : words / min;
+    }
 }
